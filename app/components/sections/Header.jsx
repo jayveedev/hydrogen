@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Menu from '../snippets/Menu';
 import Logo from '../snippets/Logo';
 import Account from '../snippets/Account';

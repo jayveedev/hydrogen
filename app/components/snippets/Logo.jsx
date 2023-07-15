@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Logo() {
   return (
     <a className="dl__logo_main common_header__logo"

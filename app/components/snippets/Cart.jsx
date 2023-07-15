@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Cart() {
     return(
         <a className="common_header__link common_header__link_cart" 
@@ -15,7 +13,7 @@ export default function Cart() {
 		    </svg>
 
         </a>
-        
+
     );
 }
 

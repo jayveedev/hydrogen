@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Menu() {
   return (
     <a className="common_header__link common_header__link_menu"
