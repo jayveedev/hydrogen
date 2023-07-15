@@ -51,9 +51,11 @@ export const links = () => {
 
 export async function loader({context}) {
   const layout = await context.storefront.query(LAYOUT_QUERY);
+  const products = await context.storefront.query(PRODUCT_QUERY);
 
   return {
     layout,
+    products
   };
 }
 
@@ -61,6 +63,8 @@ export default function App() {
   const data = useLoaderData();
 
   const {name} = data.layout.shop;
+
+  //const {products} = data.products;
 
   return (
     <html lang="en">
@@ -90,6 +94,24 @@ const LAYOUT_QUERY = `#graphql
     shop {
       name
       description
+      primaryDomain {
+        url
+      }
+    }
+  }
+`;
+
+
+const PRODUCT_QUERY = `
+query {
+    products(first: 10) {
+      edges {
+        node {
+          id
+          title
+          handle
+        }
+      }
     }
   }
 `;

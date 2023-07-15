@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 export default function Account() {
     return(
-        <a className="js__recharge_login_link common_header__link common_header__link_account" 
-            href="/">
+        <Link className="js__recharge_login_link common_header__link common_header__link_account" 
+            to="/">
                 <svg className="common_header__link_icon" 
                 width="19" 
                 height="19" 
@@ -12,7 +14,7 @@ export default function Account() {
 
                 </svg>
 
-        </a>
+        </Link>
     );
 
 }

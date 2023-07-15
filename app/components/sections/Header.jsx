@@ -1,9 +1,20 @@
+import {
+    useLoaderData,
+} from '@remix-run/react';
+
 import Menu from '../snippets/Menu';
 import Logo from '../snippets/Logo';
 import Account from '../snippets/Account';
 import Cart from '../snippets/Cart';
 
+
 export default function Header() {
+    const data = useLoaderData();
+
+    const {url} = data.layout.shop.primaryDomain;
+
+    console.log(url)
+
   return (
     <header>
       <a href="/"
@@ -29,7 +40,7 @@ export default function Header() {
                     </div>
 
                     <div className="common_header__center">
-                        <Logo />
+                        <Logo url = {url}/>
 
                     </div>
 
