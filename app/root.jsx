@@ -9,9 +9,22 @@ import {
 import styles from './styles/app.css';
 import favicon from '../public/favicon.svg';
 
+import Header from './components/Header';
+
 export const links = () => {
   return [
-    {rel: 'stylesheet', href: styles},
+    {
+      rel: 'stylesheet',
+      href: styles,
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap',
+    },
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -20,13 +33,28 @@ export const links = () => {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+    },
+    {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: favicon,
+    },
   ];
 };
 
 export async function loader({context}) {
   const layout = await context.storefront.query(LAYOUT_QUERY);
-  return {layout};
+
+  return {
+    layout,
+  };
 }
 
 export default function App() {
@@ -38,13 +66,16 @@ export default function App() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+        />
+
         <Meta />
         <Links />
       </head>
       <body>
-        {/* <h1>Hello, {name}</h1>
-        <p>This is a custom storefront powered by Hydrogen</p> */}
         <Outlet />
         <ScrollRestoration />
         <Scripts />

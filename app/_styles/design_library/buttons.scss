@@ -1,0 +1,300 @@
+// EXTENDS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%btn {
+	display: inline-block;
+
+	vertical-align: top;
+	overflow: hidden;
+
+	background: none;
+	border: none;
+
+	text-decoration: none;
+	text-align: center;
+	white-space: nowrap;
+
+	cursor: pointer;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+			appearance: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+		-ms-user-select: none;
+			user-select: none;
+
+	@include transition( .2s, background, border, color );
+}
+
+
+
+
+// PRIMARY BUTTONS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.dl__btn_primary {
+	@extend %btn;
+
+	height: 50px;
+
+	background: rgb($dl_primary_btn_bg);
+	border: 2px solid rgb($dl_primary_btn_bg);
+
+	font: 600 20px $dl_base_font;
+	color: rgb($dl_primary_btn_txt);
+	text-shadow: 1px 1px 0 rgb($dl_primary_btn_txt_shadow);
+
+	@include border_radius( 25px );
+	
+	&:hover {
+		background: rgb($dl_primary_btn_bg_hover);
+		border-color: rgb($dl_primary_btn_bg_hover);
+
+		color: rgb($dl_primary_btn_txt_hover);
+	}
+
+	&:disabled,
+	&.disabled,
+	&:disabled:focus,
+	&.disabled:focus,
+	&:disabled:hover,
+	&.disabled:hover,
+	&:disabled:active,
+	&.disabled:active {
+		background: rgba($dl_primary_btn_bg, .5);
+		border-color: transparent;
+
+		text-shadow: 1px 1px 0 rgba($dl_primary_btn_txt_shadow, .5);
+
+		cursor: default;
+	}
+
+}
+
+a.dl__btn_primary,
+span.dl__btn_primary {
+	padding-left: 28px;
+	padding-right: 28px;
+
+	line-height: 44px;
+}
+
+button.dl__btn_primary {
+	padding-left: 28px;
+	padding-right: 28px;
+	padding-bottom: 2px;
+
+	line-height: 1;
+}
+
+
+
+
+// SECONDARY BUTTONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.dl__btn_secondary {
+	@extend %btn;
+
+	height: 32px;
+
+	margin-top: -9px;
+
+	font: 600 18px $dl_base_font;
+	color: rgb($dl_secondary_btn_txt);
+	text-decoration: none;
+
+	position: relative;
+
+	@include transition( .2s, color );
+
+	&:after {
+		content: '';
+
+		width: 100%;
+		height: 2px;
+
+		display: block;
+
+		opacity: 1;
+
+		background: rgb($dl_secondary_btn_txt);
+
+		position: absolute;
+		left: 0;
+		bottom: 0;
+
+		@include transition( .2s, bottom, opacity );
+	}
+
+	&:hover {
+		color: rgb($dl_secondary_btn_txt_hover);
+	}
+
+	&:hover:after {
+		opacity: 0;
+
+		bottom: 4px;
+	}
+
+	&:disabled,
+	&.disabled,
+	&:disabled:focus,
+	&.disabled:focus,
+	&:disabled:hover,
+	&.disabled:hover,
+	&:disabled:active,
+	&.disabled:active {
+		color: rgba($dl_secondary_btn_txt, .5);
+
+		cursor: default;
+
+		&:after {
+			opacity: 1;
+			background: rgba($dl_secondary_btn_txt, .5);
+			bottom: 0;
+		}
+
+	}
+
+}
+
+a.dl__btn_secondary {
+	line-height: 32px;
+}
+
+button.dl__btn_secondary {
+	line-height: 1;
+}
+
+
+
+
+// ICONS BUTTONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.dl__btn_icon {
+	@extend %btn;
+
+	width: 44px;
+	height: 44px;
+
+	padding: 13px;
+
+	svg {
+		width: 18px;
+		height: 18px;
+
+		fill: rgb($dl_color_text_title);
+
+		@include transition( .2s, fill );
+	}
+
+}
+
+a.dl__btn_icon:hover,
+button.dl__btn_icon:hover {
+
+	svg {
+		fill: rgb($dl_color_red);
+	}
+
+}
+
+
+
+
+// RESPONSIVE STYLES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include responsive( $min, $viewport_1 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_2 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_3 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_4 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_5 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_6 ) {
+
+	.dl__btn_primary {
+		height: 60px;
+
+		font-size: 24px;
+
+		@include border_radius( 30px );
+	}
+
+	a.dl__btn_primary,
+	span.dl__btn_primary {
+		padding-left: 38px;
+		padding-right: 38px;
+
+		line-height: 54px;
+	}
+
+	button.dl__btn_primary {
+		padding-left: 38px;
+		padding-right: 38px;
+		padding-bottom: 2px;
+
+		line-height: 1;
+	}
+
+
+
+
+	.dl__btn_secondary {
+		height: 40px;
+
+		margin-top: -12px;
+
+		font-size: 22px;
+	}
+
+	a.dl__btn_secondary {
+		line-height: 40px;
+	}
+
+	button.dl__btn_secondary {
+
+	}
+
+
+
+
+	.dl__btn_icon {
+		padding: 11px;
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_7 ) {
+
+}

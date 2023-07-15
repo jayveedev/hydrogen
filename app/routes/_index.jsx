@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export function meta() {
   return [
@@ -13,8 +14,8 @@ export function meta() {
 
 export default function Index() {
   return (
-    <div>
-      <h3>Hello world!</h3>
-    </div>
+    <main>
+      <Header />
+    </main>
   );
 }

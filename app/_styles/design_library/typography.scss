@@ -1,0 +1,280 @@
+// EXTENDS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%dl__text {
+	margin-top: -.5ex;
+	margin-bottom: -.37ex;
+
+	& + &:before {
+		content: '';
+
+		width: 0;
+		height: 0;
+
+		display: block;
+
+		margin: -.5ex 0 0 0;
+	}
+
+}
+
+%dl__text_base {
+	@extend %dl__text;
+
+	font: 400 14px/1.4 $dl_base_font;
+	color: rgb($dl_color_text_base);
+}
+
+%dl__text_h1 {
+	@extend %dl__text;
+
+	font: 500 30px/1.2 $dl_heading_font;
+	color: rgb($dl_color_text_title);
+}
+
+%dl__text_h2 {
+	@extend %dl__text;
+
+	font: 500 22px/1.2 $dl_heading_font;
+	color: rgb($dl_color_text_title);
+}
+
+%dl__text_h3 {
+	@extend %dl__text;
+
+	font: 500 18px/1.2 $dl_heading_font;
+	color: rgb($dl_color_text_title);
+}
+
+%dl__text_h4 {
+	@extend %dl__text;
+
+	font: 700 16px/1.2 $dl_base_font;
+	color: rgb($dl_color_text_title);
+}
+
+%dl__text_h5 {
+	@extend %dl__text;
+
+	font: 700 14px/1.2 $dl_base_font;
+	color: rgb($dl_color_text_title);
+}
+
+%dl__text_h6 {
+	@extend %dl__text;
+
+	font: 700 12px/1.2 $dl_base_font;
+	color: rgb($dl_color_text_title);
+}
+
+
+
+
+// TYPOGRAPHY /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+html,
+body {
+	font: 400 14px/1.4 $dl_base_font;
+	color: rgb($dl_color_text_base);
+}
+
+h1 {
+	@extend %dl__text_h1;
+}
+
+h2 {
+	@extend %dl__text_h2;
+}
+
+h3 {
+	@extend %dl__text_h3;
+}
+
+h4 {
+	@extend %dl__text_h4;
+}
+
+h5 {
+	@extend %dl__text_h5;
+}
+
+h6 {
+	@extend %dl__text_h6;
+}
+
+p {
+	@extend %dl__text_base;
+}
+
+a {
+	color: rgb($dl_link_font_color);
+	text-decoration: underline;
+
+	@include transition( .2s, background, border-color, color );
+}
+
+a:hover {
+	color: rgb($dl_link_font_color_hover);
+	text-decoration: none;
+}
+
+ol,
+ul,
+dl {
+	list-style-position: inside;
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {}
+
+blockquote {}
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	vertical-align: baseline;
+
+	font-size: 75%;
+	line-height: 0;
+
+	position: relative;
+}
+
+sub {
+	bottom: -.25em;
+}
+
+sup {
+	top: -.5em;
+}
+
+
+
+
+// RESPONSIVE STYLES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include responsive( $min, $viewport_1 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_2 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_3 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_4 ) {
+
+	%dl__text_base {
+		font-size: 16px;
+	}
+
+	%dl__text_h1 {
+		font-size: 45px;
+	}
+
+	%dl__text_h2 {
+		font-size: 28px;
+	}
+
+	%dl__text_h3 {
+		font-size: 22px;
+	}
+
+	%dl__text_h4 {
+		font-size: 19px;
+	}
+
+	%dl__text_h5 {
+		font-size: 16px;
+	}
+
+	%dl__text_h6 {
+		font-size: 14px;
+	}
+
+
+
+
+	html,
+	body {
+		font-size: 16px;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_5 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_6 ) {
+
+	%dl__text_base {
+		font-size: 18px;
+	}
+
+	%dl__text_h1 {
+		font-size: 60px;
+		line-height: 1.15;
+	}
+
+	%dl__text_h2 {
+		font-size: 35px;
+	}
+
+	%dl__text_h3 {
+		font-size: 26px;
+	}
+
+	%dl__text_h4 {
+		font-size: 22px;
+	}
+
+	%dl__text_h5 {
+		font-size: 18px;
+	}
+
+	%dl__text_h6 {
+		font-size: 16px;
+	}
+
+
+
+
+	html,
+	body {
+		font-size: 18px;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_7 ) {
+
+}

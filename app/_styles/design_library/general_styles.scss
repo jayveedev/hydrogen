@@ -1,0 +1,163 @@
+// REMOVE SHOPIFY PREVIEW FRAME AND ITS PADDING ///////////////////////////////////////////////////////////////////////////////////////////
+html {
+	padding-bottom: 0 !important;
+}
+
+#preview-bar-iframe {
+	display: none !important;
+}
+
+
+
+
+// GENERAL STYLES FOR ALL PAGES ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+html,
+body {
+	height: 100%;
+}
+
+svg {
+	@include transition( .2s, fill );
+}
+
+.page_wrapper {
+	max-width: 100%;
+	// max-width: 100vw;
+
+	height: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+
+
+// TABLES /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+table {
+	border-collapse: collapse;
+}
+
+th {
+	text-align: inherit;
+}
+
+
+
+
+// SHOPIFY CHALLENGE //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.shopify-challenge__container {
+	padding: 50px 0;
+
+	.shopify-challenge__button {
+		height: 50px;
+
+		display: inline-block;
+
+		padding: 0 30px;
+
+		background: rgb($dl_primary_btn_bg);
+		border: none;
+		outline: none;
+
+		font: 600 20px/50px $dl_base_font;
+		color: rgb($dl_primary_btn_txt);
+		text-decoration: none;
+		text-align: center;
+		text-transform: uppercase;
+		text-shadow: 1px 1px 0 rgb($dl_primary_btn_txt_shadow);
+
+		position: relative;
+
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+				appearance: none;
+		cursor: pointer;
+
+		@include border_radius( 25px );
+		@include transform( translateX(-3px) );
+		@include transition( .2s, background );
+	}
+	.shopify-challenge__button:hover {
+		background: rgb($dl_primary_btn_bg_hover);
+
+		color: rgb($dl_primary_btn_txt_hover);
+	}
+
+}
+
+
+
+
+
+// HIDE RECHARGE DEFAULT LOGIN LINK ///////////////////////////////////////////////////////////////////////////////////////////////////////
+div#rc_login {
+	display: none !important;
+}
+
+
+
+
+// RESPONSIVE STYLES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include responsive( $min, $viewport_1 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_2 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_3 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_4 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_5 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_6 ) {
+
+	.shopify-challenge__container {
+
+		.shopify-challenge__button {
+			height: 60px;
+
+			padding-left: 38px;
+			padding-right: 38px;
+
+			font-size: 24px;
+
+			@include border_radius( 30px );
+		}
+
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_7 ) {
+
+}
