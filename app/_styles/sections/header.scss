@@ -1,0 +1,543 @@
+// TOPBAR /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header__topbar {
+	display: none;
+
+	padding: 4px 10px;
+
+	background: rgb($dl_color_red);
+
+	text-align: center;
+}
+
+.common_header__topbar_mobile {
+	display: block;
+}
+
+.common_header_topbar__link {
+	text-decoration: unset;
+}
+
+.common_header__topbar_text {
+
+	p {
+		@extend %dl__text_h6;
+
+		margin: 0;
+
+		font-size: 10px;
+		font-weight: normal;
+		line-height: 1.5;
+		color: rgb($dl_color_white);
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		text-shadow: 1px 1px 0 rgba($dl_color_text_title, .3);
+	}
+
+}
+
+
+
+
+// MAIN HEADER ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header {
+	position: relative;
+	z-index: 98;
+
+	&.header_stuck {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		z-index: 1000;
+
+		-webkit-backface-visibility: hidden;
+
+		@include transform( translateZ(0) );
+		@include box_shadow( 0 0 15px 0 rgba($dl_color_text_title, .2) );
+	}
+
+	// &.desktop_menu_enabled {
+	// 	@include box_shadow( none );
+	// }
+
+}
+
+.common_header__content {
+	background: rgb($dl_color_white);
+
+	position: relative;
+	z-index: 10;
+}
+
+.common_header__row {
+	height: 50px;
+
+	justify-content: space-between;
+	align-items: center;
+}
+
+.common_header__left {
+	max-width: 100px;
+
+	-ms-flex: 0 0 100px;
+		flex: 0 0 100px;
+
+	padding: 0 0 0 15px;
+}
+
+.common_header__center {
+	text-align: center;
+}
+
+.common_header__right {
+	max-width: 100px;
+
+	-ms-flex: 0 0 100px;
+		flex: 0 0 100px;
+
+	padding: 0 15px 0 0;
+
+	text-align: right;
+}
+
+.common_header__link {
+	width: 44px;
+	height: 44px;
+
+	display: inline-block;
+	vertical-align: top;
+
+	padding: 13px;
+
+	background: none;
+	border: none;
+
+	font-size: 0;
+	line-height: 0;
+
+	-webkit-appearance: none;
+			appearance: none;
+	cursor: pointer;
+}
+
+.common_header__link_icon {
+	fill: rgb($dl_color_text_title);
+
+	.common_header__link:hover & {
+		fill: rgb($dl_color_red);
+	}
+
+}
+
+.common_header__link_menu {
+	margin: 0 0 0 -13px;
+}
+
+.common_header__link_search {
+
+}
+
+.common_header__link_cart {
+	margin: 0 -13px 0 0;
+}
+
+
+
+
+
+// LOGO ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header__logo_xmas {
+	width: 150px;
+
+	padding-left: 25px;
+}
+
+
+
+
+// MOBILE SEARCH //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header__search_mobile {
+	@extend %dl__gradient_grey;
+
+	width: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 15px;
+
+	@include box_shadow( 0 7px 7px 0 rgba($dl_color_text_title, .07), 0 2px 0 0 rgba($dl_color_text_title, .07) );
+}
+
+.common_header__search_mobile__form {
+	width: calc(100% - 33px);
+
+	position: relative;
+}
+
+.common_header__search_mobile__input {
+	padding: 0 55px 0 20px;
+}
+
+.common_header__search_mobile__submit {
+	position: absolute;
+	right: 8px;
+	top: 3px;
+}
+
+.common_header__search_mobile__cancel {
+	margin: 0 -13px 0 0;
+}
+
+
+
+
+// DESKTOP SEARCH /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header__search_desktop__form {
+	width: auto;
+	height: 20px;
+
+	display: none;
+
+	margin: 0 0 0 15px;
+
+	border-bottom: 2px solid rgb($dl_color_text_title);
+
+	position: relative;
+
+	&.active {
+		width: 200px;
+	}
+
+}
+
+.common_header__search_desktop__trigger {
+	display: block;
+
+	vertical-align: top;
+
+	font-size: 15px;
+	line-height: 1.2;
+	color: rgb($dl_color_text_title);
+	text-decoration: none;
+
+	@include transform( translateY(-3px) );
+
+	&:hover {
+		color: rgb($dl_color_red);
+	}
+
+	.active & {
+		display: none;
+	}
+
+}
+
+.common_header__search_desktop__input {
+	width: auto;
+	height: 18px;
+
+	display: none;
+
+	overflow: visible;
+
+	padding: 0;
+
+	background: none;
+	border: none;
+	outline: none;
+
+	font-size: 15px;
+
+	-webkit-appearance: none;
+			appearance: none;
+
+	@include border_radius( 0 );
+	@include transform( translateY(-3px) );
+
+	&:focus {
+		outline: none;
+	}
+
+	.active & {
+		display: block;
+	}
+
+}
+
+.common_header__search_desktop__submit {
+	width: 14px;
+	height: 14px;
+
+	display: none;
+
+	background: none;
+	border: none;
+
+	position: absolute;
+	right: 1px;
+	top: 0;
+
+	-webkit-appearance: none;
+			appearance: none;
+	cursor: pointer;
+
+	.active & {
+		display: block;
+	}
+
+}
+
+.common_header__search_desktop__icon {
+
+	.common_header__search_desktop__submit:hover & {
+		fill: rgb($dl_color_red);
+	}
+
+}
+
+
+
+
+// DESKTOP INFO STRING ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header__info_desktop {
+	display: none;
+
+	margin: 0 !important;
+
+	font-size: 15px;
+	color: rgb($dl_color_text_title);
+}
+
+
+
+
+// DESKTOP MENU ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.common_header__desktop_menu {
+	display: none;
+
+	background: rgb($dl_color_white);
+	border-top: 1px solid rgb($dl_color_mid_grey);
+
+	font-size: 0;
+	line-height: 0;
+	text-align: center;
+
+	position: relative;
+	z-index: 1;
+
+	-webkit-backface-visibility: hidden;
+
+	will-change: transform;
+
+	@include transform( translateY(-100%) );
+	@include transition( .15s, transform );
+	@include box_shadow( 0 0 15px 0 rgba($dl_color_text_title, .2) );
+
+	// &.hidden {
+	// 	@include transform( translateY(-100%) );
+	// }
+
+}
+
+.common_header__desktop_menu__item {
+	display: inline-block;
+}
+
+.common_header__desktop_menu__link {
+	height: 33px;
+
+	display: block;
+
+	padding: 0 20px;
+
+	font-size: 14px;
+	line-height: 31px;
+	color: rgb($dl_color_text_title);
+	text-decoration: none;
+
+	&:hover {
+		color: rgb($dl_color_red);
+	}
+
+	&.active {
+		// @extend %dl__gradient_grey;
+
+		background: rgb($dl_color_mid_grey);
+
+		font-weight: bold;
+		color: rgb($dl_color_text_title);
+	}
+
+}
+
+
+
+
+// RESPONSIVE STYLES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include responsive( $min, $viewport_1 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_2 ) {
+
+	.common_header__topbar {
+		padding: 4px 15px;
+	}
+
+	.common_header__topbar_text {
+
+		p {
+			font-size: 12px;
+		}
+
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_3 ) {
+
+	.common_header__topbar_text {
+
+		p {
+			letter-spacing: 3px;
+		}
+
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_4 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_5 ) {
+
+	.common_header__topbar {
+		display: none;
+	}
+
+	.common_header__topbar_desktop {
+		display: block;
+	}
+
+
+
+
+	.common_header {
+
+		&.desktop_menu_enabled {
+			@include box_shadow( none );
+		}
+
+	}
+
+	.common_header__content_shadow {
+		@include box_shadow( 0 0 15px 0 rgba($dl_color_text_title, .2) );
+	}
+
+
+
+
+	.common_header__row {
+		height: 70px;
+	}
+
+	.common_header__left,
+	.common_header__right {
+		max-width: 35%;
+
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		-ms-flex: 0 0 35%;
+			flex: 0 0 35%;
+	}
+
+	.common_header__right {
+		justify-content: flex-end;
+	}
+
+	.common_header__logo_xmas {
+		width: 210px;
+
+		padding-left: 35px;
+	}
+
+	.common_header__link_search__mobile,
+	.common_header__search_mobile {
+		display: none;
+	}
+
+	.common_header__search_desktop__form {
+		display: block;
+	}
+
+	.common_header__link {
+		padding: 11px;
+	}
+
+	.common_header__link_icon {
+		width: 22px;
+		height: 22px;
+	}
+
+	.common_header__link_menu {
+		margin: 0 0 0 -11px;
+	}
+
+	.common_header__link_cart {
+		margin: 0 -11px 0 0;
+	}
+
+	.common_header__link_account {
+		margin: 0 0 0 15px;
+	}
+
+	.common_header__info_desktop {
+		display: block;
+	}
+
+
+
+
+	.common_header__desktop_menu {
+		display: block;
+
+		@include transform( translateY(0) );
+
+		&.hidden {
+			@include transform( translateY(-100%) );
+		}
+
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_6 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_7 ) {
+
+}

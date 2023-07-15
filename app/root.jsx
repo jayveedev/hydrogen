@@ -9,7 +9,7 @@ import {
 import styles from './styles/app.css';
 import favicon from '../public/favicon.svg';
 
-import Header from './components/Header';
+import Layout from './components/layout/Layout';
 
 export const links = () => {
   return [
@@ -76,6 +76,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <Layout title={name} />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
