@@ -4,9 +4,9 @@ import {
 
 import Topbar from '../snippets/Topbar';
 import Menu from '../snippets/Menu';
-import Logo from '../snippets/Logo';
-import Account from '../snippets/Account';
-import Cart from '../snippets/Cart';
+import Logo from '../snippets/header/Logo';
+import Account from '../snippets/header/Account';
+import Cart from '../snippets/header/Cart';
 
 
 export default function Header() {
