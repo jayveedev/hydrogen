@@ -1,13 +1,12 @@
 import Header from '../sections/Header';
 
-export default function Layout() {
-  return (
-    <div>
-      <Header />
+export default function Layout({layout}) {
 
-      <main role="main" 
-      id="mainContent"></main>
+    return (
+        <main role="main" 
+        id="mainContent">
+            <Header url = {layout.shop.primaryDomain.url} />
 
-    </div>
-  );
+        </main>
+    );
 }

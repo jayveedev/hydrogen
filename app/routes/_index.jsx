@@ -11,6 +11,6 @@ export function meta() {
 
 export default function Index() {
   return (
-    <div></div>
+    <></>
   );
 }

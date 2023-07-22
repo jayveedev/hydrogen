@@ -1,9 +1,28 @@
-export const LogoIcon = (props) => {
 
+export function Icons( {attr} ) {
+
+    const {icon_type, icon_class, width, height} = attr;
+
+    switch ( icon_type ) {
+        case 'logo':
+            return ( <LogoIcon icon_class={icon_class} width={width} height={height} /> );
+        case 'menu':
+            return ( <MenuIcon icon_class={icon_class} width={width} height={height} /> );
+        case 'cart':
+            return ( <CartIcon icon_class={icon_class} width={width} height={height} /> );
+        case 'account':
+            return ( <AccountIcon icon_class={icon_class} width={width} height={height} /> );
+    }
+
+}
+
+
+function LogoIcon({icon_class, width, height}) {
+    
     return(
-        <svg className={ props.attr.class } 
-        width={ props.attr.width }
-        height={ props.attr.height }
+        <svg className={ icon_class }
+        width={ width }
+        height={ height }
         viewBox="0 0 140 50" 
         xmlns="http://www.w3.org/2000/svg">
             <rect width="140" height="50" style={{fill:'none'}}/>
@@ -17,42 +36,45 @@ export const LogoIcon = (props) => {
             
         </svg>
     )
+
 }
 
-export const MenuIcon = (props) => {
-
+function MenuIcon({icon_class, width, height}) {
+    
     return(
-        <svg className={ props.attr.class } 
-        width={ props.attr.width }
-        height={ props.attr.height } 
+        <svg className={ icon_class } 
+        width={ width }
+        height={ height } 
         viewBox="0 0 18 15.9" 
         xmlns="http://www.w3.org/2000/svg">
             <path d="M18,2.55H0V1.05H18v1.5Zm0,4.8H0V5.85H18v1.5Zm0,4.8H0v-1.5H18v1.5Zm0,4.8H0v-1.5H18v1.5Z" transform="translate(0 -1.05)"></path>
 
         </svg>
     )
+    
 }
 
-export const CartIcon = (props) => {
-
+function CartIcon({icon_class, width, height}) {
+    
     return(
-        <svg className={ props.attr.class } 
-        width={ props.attr.width }
-        height={ props.attr.height } 
+        <svg className={ icon_class } 
+        width={ width }
+        height={ height } 
         viewBox="0 0 18.27 17.77" 
         xmlns="http://www.w3.org/2000/svg">
             <path d="M0,0.68l1.44-.43L2,2.11H15.12a3.15,3.15,0,0,1,3.15,3.15v7.95H3.76ZM2.45,3.61l2.43,8.1H16.77V5.26a1.65,1.65,0,0,0-1.65-1.65H2.45Zm4.27,12a0.45,0.45,0,1,0,.45.45A0.45,0.45,0,0,0,6.72,15.61Zm-1.95.45A1.95,1.95,0,1,1,6.72,18,2,2,0,0,1,4.77,16.06Zm8.4,0A1.95,1.95,0,1,1,15.12,18,2,2,0,0,1,13.17,16.06Zm1.95-.45a0.45,0.45,0,1,0,.45.45A0.45,0.45,0,0,0,15.12,15.61Z" transform="translate(0 -0.24)"></path>
 
         </svg>
     )
+    
 }
 
-export const AccountIcon = (props) => {
-
+function AccountIcon({icon_class, width, height}) {
+    
     return(
-        <svg className={ props.attr.class } 
-        width={ props.attr.width }
-        height={ props.attr.height } 
+        <svg className={ icon_class } 
+        width={ width }
+        height={ height } 
         viewBox="0 0 18 18" 
         xmlns="http://www.w3.org/2000/svg">
             <path d="M9,3.54a3.1,3.1,0,1,0,3.1,3.1A3.1,3.1,0,0,0,9,3.54ZM9,8.26a1.62,1.62,0,1,1,1.62-1.62A1.62,1.62,0,0,1,9,8.26Z"></path>
@@ -60,4 +82,5 @@ export const AccountIcon = (props) => {
 
         </svg>
     )
+    
 }

@@ -1,3 +1,4 @@
+import {defer} from '@shopify/remix-oxygen';
 import {
   Links,
   Meta,
@@ -11,60 +12,31 @@ import favicon from '../public/favicon.svg';
 
 import Layout from './components/layout/Layout';
 
+import {parseMenu} from './lib/utils';
+
 export const links = () => {
   return [
-    {
-      rel: 'stylesheet',
-      href: styles,
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap',
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap',
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://cdn.shopify.com',
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://shop.app',
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.googleapis.com',
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-    },
-    {
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: favicon,
-    },
+    { rel: 'stylesheet', href: styles },
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap' },
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap' },
+    { rel: 'preconnect', href: 'https://cdn.shopify.com' },
+    { rel: 'preconnect', href: 'https://shop.app' },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+    { rel: 'icon', type: 'image/svg+xml', href: favicon },
   ];
 };
 
 export async function loader({context}) {
-  const layout = await context.storefront.query(LAYOUT_QUERY);
-  const products = await context.storefront.query(PRODUCT_QUERY);
+    const [layout] = await Promise.all( [getLayoutData(context)]);
 
-  return {
-    layout,
-    products
-  };
+    return defer ({
+        layout
+    });
 }
 
 export default function App() {
   const data = useLoaderData();
-
-  const {name} = data.layout.shop;
-
-  //const {products} = data.products;
 
   return (
     <html lang="en">
@@ -80,7 +52,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Layout title={name} />
+        <Layout layout={data.layout} />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -90,28 +62,64 @@ export default function App() {
 }
 
 const LAYOUT_QUERY = `#graphql
-  query layout {
-    shop {
-      name
-      description
-      primaryDomain {
-        url
-      }
-    }
-  }
-`;
-
-
-const PRODUCT_QUERY = `
-query {
-    products(first: 10) {
-      edges {
-        node {
-          id
-          title
-          handle
+    query layout(
+        $language: LanguageCode
+        $headerMenuHandle: String!
+    ) @inContext(language: $language) {
+        shop {
+            ...Shop
         }
-      }
+        headerMenu: menu(handle: $headerMenuHandle) {
+            ...Menu
+        }
     }
-  }
+    fragment Shop on Shop {
+        name
+        description
+        primaryDomain {
+            url
+        }
+    }
+    fragment MenuItem on MenuItem {
+        id
+        resourceId
+        tags
+        title
+        type
+        url
+    }
+    fragment ChildMenuItem on MenuItem {
+        ...MenuItem
+    }
+    fragment ParentMenuItem on MenuItem {
+        ...MenuItem
+        items {
+            ...ChildMenuItem
+        }
+    }
+    fragment Menu on Menu {
+        id
+        items {
+            ...ParentMenuItem
+        }
+    }
 `;
+
+
+async function getLayoutData({storefront}) {
+    const data = await storefront.query(LAYOUT_QUERY, {
+      variables: {
+        headerMenuHandle: 'main-menu',
+        language: storefront.i18n.language,
+      }
+    });
+
+    const customPrefixes = {BLOG: '', CATALOG: 'products'};
+  
+  
+    const headerMenu = data?.headerMenu
+    ? parseMenu(data.headerMenu, customPrefixes)
+    : undefined;
+  
+    return {shop: data.shop, headerMenu };
+}
