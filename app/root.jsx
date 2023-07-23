@@ -65,11 +65,15 @@ const LAYOUT_QUERY = `#graphql
     query layout(
         $language: LanguageCode
         $headerMenuHandle: String!
+        $secondaryMenuHandle: String!
     ) @inContext(language: $language) {
         shop {
             ...Shop
         }
         headerMenu: menu(handle: $headerMenuHandle) {
+            ...Menu
+        }
+        secondaryMenu: menu(handle: $secondaryMenuHandle) {
             ...Menu
         }
     }
@@ -110,6 +114,7 @@ async function getLayoutData({storefront}) {
     const data = await storefront.query(LAYOUT_QUERY, {
       variables: {
         headerMenuHandle: 'main-menu',
+        secondaryMenuHandle: 'secondary-menu',
         language: storefront.i18n.language,
       }
     });
@@ -120,6 +125,15 @@ async function getLayoutData({storefront}) {
     const headerMenu = data?.headerMenu
     ? parseMenu(data.headerMenu, customPrefixes)
     : undefined;
+
+    const secondaryMenu = data?.secondaryMenu
+    ? parseMenu(data.secondaryMenu, customPrefixes)
+    : undefined;
+
+    const menu = {
+        headerMenu,
+        secondaryMenu
+    }
   
-    return {shop: data.shop, headerMenu };
+    return {shop: data.shop, menu };
 }
