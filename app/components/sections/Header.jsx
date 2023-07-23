@@ -84,7 +84,6 @@ function Navbar({menu}) {
     return(
         <nav className="common_header__desktop_menu">
             {(headerMenu?.items || []).map( (item ) => (
-
                 <li  className="common_header__desktop_menu__item"
                 key={item.id}>
                     <NavLink  
@@ -144,7 +143,6 @@ function MenuDrawer({isMenuDrawerOpen, toggleDrawer, menu}) {
 
                     <ul className="menu_drawer__main">
                         {(headerMenu?.items || []).map( (item ) => (
-
                             <li className="menu_drawer__main_item"
                             key={item.id}>
                                 <NavLink  
@@ -165,20 +163,19 @@ function MenuDrawer({isMenuDrawerOpen, toggleDrawer, menu}) {
                     </ul>
 
                     <ul className="menu_drawer__secondary">
-                    {(secondaryMenu?.items || []).map( (item ) => (
+                        {(secondaryMenu?.items || []).map( (item ) => (
+                            <li className="menu_drawer__secondary_item"
+                            key={item.id}>
+                                <NavLink  
+                                    to={item.to}
+                                    target={item.target}
+                                    className='menu_drawer__secondary_link'
+                                >
+                                    {item.title}
+                                    
+                                </NavLink>
 
-                        <li className="menu_drawer__secondary_item"
-                        key={item.id}>
-                            <NavLink  
-                                to={item.to}
-                                target={item.target}
-                                className='menu_drawer__secondary_link'
-                            >
-                                {item.title}
-                                
-                            </NavLink>
-
-                        </li>
+                            </li>
 
                         ))}
 
