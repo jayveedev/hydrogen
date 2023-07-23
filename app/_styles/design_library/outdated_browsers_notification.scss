@@ -1,0 +1,42 @@
+.outdated_browser_notification {
+	padding: 0 40px 40px 40px;
+
+	background: #fffebb;
+
+	text-align: center;
+
+	@include box_shadow( 0 0 15px 0 rgba(0,0,0, .15) );
+}
+
+.outdated_browser_notification__title {
+	padding: 40px 0 0 0;
+}
+
+.outdated_browser_notification__text {
+	padding: 20px 0 0 0;
+}
+
+.outdated_browser_notification__list {
+	font-size: 0;
+	line-height: 0;
+}
+
+.outdated_browser_notification__list_item {
+	display: inline-block;
+
+	padding: 20px 20px 0 20px;
+}
+
+.outdated_browser_notification__list_link {
+	font-size: 20px;
+	line-height: 1;
+}
+
+.outdated_browser_notification__list_img {
+	width: 80px;
+	height: 80px;
+
+	display: block;
+
+	margin: 0 auto 15px auto;
+}

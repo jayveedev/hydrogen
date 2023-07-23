@@ -1,0 +1,128 @@
+// MIXINS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin border_radius($r){
+    -webkit-border-radius: $r;
+            border-radius: $r;
+    }
+    
+    @mixin box_shadow($x...) {
+    -webkit-box-shadow: $x;
+            box-shadow: $x;
+    }
+    
+    @mixin transform($x...) {
+    will-change: transform;
+    
+    -webkit-transform: $x translateZ(0);
+            transform: $x translateZ(0);
+    }
+    
+    @mixin transform_origin($x...) {
+    -webkit-transform-origin: $x;
+            transform-origin: $x;
+    }
+    
+    @mixin transition($t, $a:0, $b:0, $c:0) {
+    -webkit-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+    
+    // -webkit-perspective: 1000;
+    //    -moz-perspective: 1000;
+    // 	-ms-perspective: 1000;
+    // 		perspective: 1000;
+    
+        @if $a == 0 and $b == 0 and $c == 0 {
+        -webkit-transition: all $t ease-in-out;
+                transition: all $t ease-in-out;
+        }
+    
+        @if $a != 0 and $b == 0 and $c == 0 {
+        -webkit-transition: $a $t ease-in-out;
+                transition: $a $t ease-in-out;
+        }
+    
+        @if $a != 0 and $b != 0 and $c == 0 {
+        -webkit-transition: $a $t ease-in-out, $b $t ease-in-out;
+                transition: $a $t ease-in-out, $b $t ease-in-out;
+        }
+    
+        @if $a != 0 and $b != 0 and $c != 0 {
+        -webkit-transition: $a $t ease-in-out, $b $t ease-in-out, $c $t ease-in-out;
+                transition: $a $t ease-in-out, $b $t ease-in-out, $c $t ease-in-out;
+        }
+    
+    }
+    
+    @mixin transition_timing($x...) {
+    transition-timing-function: $x;
+    }
+    
+    @mixin bg_size($x...) {
+    -webkit-background-size: $x;
+            background-size: $x;
+    }
+    
+    $min: min-width;
+    $max: max-width;
+    @mixin responsive($constraint, $viewport1, $viewport2:null) {
+        @if $constraint == $min {
+            @media screen and ($min: $viewport1) {
+                @content;
+            }
+        }
+        @else if $constraint == $max {
+            @media screen and ($max: $viewport1) {
+                @content;
+            }
+        }
+        @else {
+            @media screen and ($min: $viewport1) and ($max: $viewport2) {
+                @content;
+            }
+        }
+    }
+    
+    @mixin icon($icon) {
+        background-image: url( $icon );
+        background-size: 100% 100%;
+        background-position: 50% 50%;
+    }
+    
+    @mixin animation($animation) {
+    -webkit-animation: $animation;
+            animation: $animation;
+    }
+    
+    @mixin keyframes($name) {
+        @-webkit-keyframes #{$name} {
+            @content; 
+        }
+        @keyframes #{$name} {
+            @content;
+        }
+    }
+    
+    @mixin filter($value) {
+    -webkit-filter: $value;
+            filter: $value;
+    }
+    
+    
+    
+    
+    // ICONS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @mixin icon_check($color) {
+        background-image: url( 'data:image/svg+xml;utf8,%3Csvg%20fill=%22%23#{$color}%22%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20512%20512%22%3E%3Cpath%20d=%22M497.36,70a19.29,19.29,0,0,0-27.29,0L238.58,300.84l-83.52-90.71a19.3,19.3,0,1,0-28.39,26.14l97.13,105.48A19.27,19.27,0,0,0,237.58,348H238a19.32,19.32,0,0,0,13.62-5.63L497.32,97.29A19.29,19.29,0,0,0,497.36,70Z%22%20transform=%22translate(0%200)%22/%3E%3Cpath%20d=%22M492.7,236.7a19.29,19.29,0,0,0-19.3,19.3c0,119.88-97.52,217.41-217.41,217.41S38.59,375.88,38.59,256,136.12,38.59,256,38.59A19.3,19.3,0,1,0,256,0C114.84,0,0,114.84,0,256S114.84,512,256,512,512,397.15,512,256A19.3,19.3,0,0,0,492.7,236.7Z%22%20transform=%22translate(0%200)%22/%3E%3C/svg%3E' );
+    };
+    
+    @mixin icon_cancel($color) {
+        background-image: url( 'data:image/svg+xml;utf8,%3Csvg%20fill=%22%23#{$color}%22%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20512%20512%22%3E%3Cpath%20d=%22M256,0C114.84,0,0,114.84,0,256S114.84,512,256,512,512,397.16,512,256,397.16,0,256,0Zm0,474.72C135.4,474.72,37.28,376.6,37.28,256S135.4,37.28,256,37.28,474.72,135.4,474.72,256,376.6,474.72,256,474.72Z%22%20transform=%22translate(0%200)%22/%3E%3Crect%20x=%2224.88%22%20y=%22237.96%22%20width=%22462.22%22%20height=%2237.27%22%20transform=%22translate(-106.47%20256.17)%20rotate(-45)%22/%3E%3C/svg%3E' );
+    };
+    
+    @mixin icon_star($color) {
+        background-image: url('data:image/svg+xml,%3Csvg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M7.41849 0.726691C7.33988 0.5674 7.17765 0.466553 7.00001 0.466553C6.82238 0.466553 6.66015 0.5674 6.58154 0.726691L4.67111 4.59768L0.399616 5.21798C0.223819 5.2435 0.0777622 5.36663 0.0228605 5.53557C-0.0320412 5.70451 0.013735 5.88998 0.140941 6.01397L3.23192 9.02695L2.50204 13.2818C2.47201 13.4569 2.54398 13.6338 2.68769 13.7382C2.8314 13.8426 3.02193 13.8564 3.17916 13.7737L7.00001 11.7649L10.8209 13.7737C10.9781 13.8564 11.1686 13.8426 11.3123 13.7382C11.4561 13.6338 11.528 13.4569 11.498 13.2818L10.7681 9.02695L13.8591 6.01397C13.9863 5.88998 14.0321 5.70451 13.9772 5.53557C13.9223 5.36663 13.7762 5.2435 13.6004 5.21798L9.32891 4.59768L7.41849 0.726691Z" fill="%23#{$color}"/%3E%3C/svg%3E');
+    };
+    
+    @mixin icon_check_new($color) {
+        background-image: url('data:image/svg+xml,%3Csvg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" clip-rule="evenodd" d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12ZM11.3149 17.137L18.2247 8.49971L16.9753 7.5002L11.0852 14.8629L6.91219 11.3854L5.88789 12.6145L11.3149 17.137Z" fill="%23#{$color}"/%3E%3C/svg%3E');
+    };
