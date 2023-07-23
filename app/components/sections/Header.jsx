@@ -18,10 +18,10 @@ export default function Header({layout}) {
 
         switch(drawerType) {
             case 'menu':
-                isMenuDrawerOpen ? setIsMenuDrawerOpen(false) : setIsMenuDrawerOpen(true);
+                setIsMenuDrawerOpen(prevIsMenuDrawerOpen => !prevIsMenuDrawerOpen)
                 break;
             case 'cart':
-                isCartDrawerOpen ? setIsCartDrawerOpen(false) : setIsCartDrawerOpen(true);
+                setIsCartDrawerOpen(prevIsCartDrawerOpen => !prevIsCartDrawerOpen)
                 break;
         }
 
