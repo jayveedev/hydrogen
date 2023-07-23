@@ -1,0 +1,133 @@
+.homepage_hero {
+	@extend %dl__gradient_grey;
+
+	height: 0;
+
+	padding: 345px 0 0 0;
+
+	text-align: center;
+
+	position: relative;
+}
+
+.homepage_hero__content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+.homepage_hero__title {
+	padding: 0 10%;
+
+	text-shadow: 2px 2px 0 rgb($dl_gradient_grey_1), -2px 2px 0 rgb($dl_gradient_grey_1), 2px -2px 0 rgb($dl_gradient_grey_1), -2px -2px 0 rgb($dl_gradient_grey_1);
+}
+
+.homepage_hero__btn {
+	margin: $dl_mobile_indent_2 0 70px 0;
+}
+
+.homepage_hero__image_left {
+	width: auto;
+	height: auto;
+
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+}
+
+.homepage_hero__image_right {
+	width: auto;
+	height: auto;
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+}
+
+
+
+
+// RESPONSIVE STYLES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include responsive( $min, $viewport_1 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_2 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_3 ) {
+
+	.homepage_hero__btn {
+		margin-bottom: 0;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_4 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_5 ) {
+
+	.homepage_hero {
+		padding: 450px 0 0 0;
+	}
+
+	.homepage_hero__btn {
+		margin-top: $dl_desktop_indent_2;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_6 ) {
+
+	.homepage_hero {
+		padding: 500px 0 0 0;
+	}
+
+	.homepage_hero__container {
+		max-width: 1810px;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_7 ) {
+
+	.homepage_hero {
+		padding: 650px 0 0 0;
+	}
+
+	.homepage_hero__container {
+		padding: 0;
+	}
+
+}
