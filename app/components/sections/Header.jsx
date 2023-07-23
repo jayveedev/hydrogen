@@ -12,7 +12,6 @@ export default function Header({layout}) {
 
     const [ isMenuDrawerOpen, setIsMenuDrawerOpen ] = useState(false);
     const [ isCartDrawerOpen, setIsCartDrawerOpen ] = useState(false);
-    const [ isDrawerOpen, setIsDrawerOpen ] = useState(false);
 
     const toggleDrawer = (e, drawerType) => {
         e.preventDefault();
@@ -39,7 +38,7 @@ export default function Header({layout}) {
                     <div className="container common_header__container">
                         <div className="row common_header__row">
                             <div className="common_header__left">
-                                <MenuIcon isMenuDrawerOpen={isMenuDrawerOpen} toggleDrawer={toggleDrawer} />
+                                <MenuIcon toggleDrawer={toggleDrawer} />
 
                             </div>
 
@@ -53,7 +52,7 @@ export default function Header({layout}) {
 
                                 <Account />
 
-                                <CartIcon isCartDrawerOpen={isCartDrawerOpen} toggleDrawer={toggleDrawer} />
+                                <CartIcon toggleDrawer={toggleDrawer} />
 
                             </div>
 
