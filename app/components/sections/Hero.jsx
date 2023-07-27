@@ -89,11 +89,14 @@ const getGeneratedImgUrls = (img_url, image_sizes) => {
 
             const image_size = image_sizes[key]['size'],
                 image_crop = image_sizes[key]['crop'],
-                image_device_type = image_sizes[key]['device']
+                image_device_type = image_sizes[key]['device'],
+                imgWidthRetina = parseInt( image_size.split('x')[0] ) * 2,
+                imgHeightRetina = parseInt( image_size.split('x')[1] ) * 2,
+                imgSizeRetina = `${imgWidthRetina}x${imgHeightRetina}`;
 
-                newImgUrls[key] = image_device_type == 'mobile' 
-                    ? `${mobileImgUrlSplit[0]}_${image_size}_crop_${image_crop}${imgExtensionMobile}${mobileImgUrlSplit[1]}`
-                    : `${desktopImgUrlSplit[0]}_${image_size}_crop_${image_crop}${imgExtensionDesktop}${desktopImgUrlSplit[1]}`;
+            newImgUrls[key] = image_device_type == 'mobile' 
+                ? `${mobileImgUrlSplit[0]}_${image_size}_crop_${image_crop}${imgExtensionMobile}${mobileImgUrlSplit[1]}, ${mobileImgUrlSplit[0]}_${imgSizeRetina}_crop_${image_crop}${imgExtensionMobile}${mobileImgUrlSplit[1]} 2x`
+                : `${desktopImgUrlSplit[0]}_${image_size}_crop_${image_crop}${imgExtensionDesktop}${desktopImgUrlSplit[1]}, ${desktopImgUrlSplit[0]}_${imgSizeRetina}_crop_${image_crop}${imgExtensionDesktop}${desktopImgUrlSplit[1]} 2x`;
 
         });
 
