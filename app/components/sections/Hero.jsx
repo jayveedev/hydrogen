@@ -5,15 +5,17 @@ export default function Hero({settings}) {
 
     const { heading, button_text, button_url, image_desktop_left, image_desktop_right, image_mobile_left, image_mobile_right, image_sizes } = settings;
 
+    console.log(image_desktop_right)
+
     const images = {
         url: {
             left_image: {
-                desktop_img_url: image_desktop_left.reference.previewImage.url,
-                mobile_img_url: image_mobile_left.reference.previewImage.url
+                desktop_img_url: image_desktop_left.reference.image.url,
+                mobile_img_url: image_mobile_left.reference.image.url
             },
             right_image: {
-                desktop_img_url: image_desktop_right.reference.previewImage.url,
-                mobile_img_url: image_mobile_right.reference.previewImage.url
+                desktop_img_url: image_desktop_right.reference.image.url,
+                mobile_img_url: image_mobile_right.reference.image.url
             }
         },
         sizes: JSON.parse(image_sizes.value)
@@ -64,25 +66,25 @@ const getGeneratedImgUrls = (img_url, image_sizes) => {
         const { desktop_img_url, mobile_img_url } = img_url;
 
         const imgExtensionMobile = 
-        mobile_img_url.includes('.png')
-            ?  '.png'
-            : mobile_img_url.includes('.jpg')
-            ? '.jpg'
-            : mobile_img_url.includes('.jpeg')
-            ? '.jpeg'
-            : false;
+            mobile_img_url.includes('.png')
+                ? '.png'
+                : mobile_img_url.includes('.jpg')
+                ? '.jpg'
+                : mobile_img_url.includes('.jpeg')
+                ? '.jpeg'
+                : false;
 
         const imgExtensionDesktop = 
-        desktop_img_url.includes('.png')
-            ?  '.png'
-            : desktop_img_url.includes('.jpg')
-            ? '.jpg'
-            : desktop_img_url.includes('.jpeg')
-            ? '.jpeg'
-            : false;
+            desktop_img_url.includes('.png')
+                ? '.png'
+                : desktop_img_url.includes('.jpg')
+                ? '.jpg'
+                : desktop_img_url.includes('.jpeg')
+                ? '.jpeg'
+                : false;
 
-        const mobileImgUrlSplit = mobile_img_url.split(imgExtensionMobile);
-        const desktopImgUrlSplit = desktop_img_url.split(imgExtensionMobile);
+        const mobileImgUrlSplit = mobile_img_url.split(imgExtensionMobile),
+            desktopImgUrlSplit = desktop_img_url.split(imgExtensionMobile);
 
 
         Object.keys(image_sizes).map((key) => {
