@@ -26,10 +26,7 @@ export default function Homepage() {
 
 
     return (
-        <>
-            <Hero settings={homepage_hero}/>
-            
-        </>
+         <Hero settings={ homepage_hero }/>
 
     );
 }

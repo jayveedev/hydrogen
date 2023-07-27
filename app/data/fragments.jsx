@@ -10,7 +10,7 @@ export const MEDIA_FRAGMENT = `#graphql
       id
       image {
         id
-        url
+        url 
         width
         height
       }

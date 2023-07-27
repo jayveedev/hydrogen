@@ -25,6 +25,9 @@ query GetMetaObject($id: ID!) {
             ...Media
         }
       }
+      image_sizes: field(key: "image_sizes") {
+        value
+      }
       heading: field(key: "heading") {
         value
       }
