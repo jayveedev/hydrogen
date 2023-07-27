@@ -64,20 +64,20 @@ const getGeneratedImgUrls = (img_url, image_sizes) => {
         const { desktop_img_url, mobile_img_url } = img_url;
 
         const imgExtensionMobile = 
-        mobile_img_url.includes('png')
+        mobile_img_url.includes('.png')
             ?  '.png'
-            : mobile_img_url.includes('jpg')
+            : mobile_img_url.includes('.jpg')
             ? '.jpg'
-            : mobile_img_url.includes('jpeg')
+            : mobile_img_url.includes('.jpeg')
             ? '.jpeg'
             : false;
 
         const imgExtensionDesktop = 
-        desktop_img_url.includes('png')
+        desktop_img_url.includes('.png')
             ?  '.png'
-            : desktop_img_url.includes('jpg')
+            : desktop_img_url.includes('.jpg')
             ? '.jpg'
-            : desktop_img_url.includes('jpeg')
+            : desktop_img_url.includes('.jpeg')
             ? '.jpeg'
             : false;
 
@@ -95,11 +95,10 @@ const getGeneratedImgUrls = (img_url, image_sizes) => {
                     ? `${mobileImgUrlSplit[0]}_${image_size}_crop_${image_crop}${imgExtensionMobile}${mobileImgUrlSplit[1]}`
                     : `${desktopImgUrlSplit[0]}_${image_size}_crop_${image_crop}${imgExtensionDesktop}${desktopImgUrlSplit[1]}`;
 
-            
-        })
-
+        });
 
         return newImgUrls;
+
 }
 
 
@@ -127,7 +126,6 @@ function RenderImage( { img_url, image_sizes, width, height, img_class } ) {
 
     return (
         <picture>
-
             { Sources }
 
             <Image
