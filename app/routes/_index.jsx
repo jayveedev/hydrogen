@@ -2,7 +2,7 @@ import {defer} from '@shopify/remix-oxygen';
 import { useLoaderData } from '@remix-run/react';
 import { HOMEPAGE_HERO_QUERY } from '../data/requests';
 
-import  Hero  from '../components/sections/Hero';
+import  HomepageHero  from '../components/sections/HomepageHero';
 
 export async function loader({params, context}) {
 
@@ -26,7 +26,7 @@ export default function Homepage() {
 
 
     return (
-         <Hero settings={ homepage_hero }/>
+         <HomepageHero settings={ homepage_hero }/>
 
     );
 }
