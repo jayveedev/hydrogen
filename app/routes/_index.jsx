@@ -3,6 +3,7 @@ import { useLoaderData } from '@remix-run/react';
 import { HOMEPAGE_HERO_QUERY } from '../data/requests';
 
 import  HomepageHero  from '../components/sections/HomepageHero';
+import  HomepageProductBanner  from '../components/sections/HomepageProductBanner';
 
 export async function loader({params, context}) {
 
@@ -26,7 +27,11 @@ export default function Homepage() {
 
 
     return (
-         <HomepageHero settings={ homepage_hero }/>
+        <>
+            <HomepageHero settings={ homepage_hero }/>
+            <HomepageProductBanner />
+
+        </>
 
     );
 }
