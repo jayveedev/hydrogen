@@ -1,4 +1,4 @@
-import { MEDIA_FRAGMENT } from './fragments';
+import { MEDIA_FRAGMENT, FEATURED_COLLECTION_FRAGMENT } from './fragments';
 
 export const HOMEPAGE_HERO_QUERY = `
 query GetMetaObject($id: ID!) {
@@ -50,40 +50,16 @@ query GetMetaObject($id: ID!) {
         heading: field(key: "heading") {
             value
         }
-        featured_collection: field(key: "collection") {
+        image_sizes: field(key: "image_sizes") {
             value
         }
-    }
-}
-`;
-
-
-export const FEATURED_COLLECTION = `#graphql
-query GetFeaturedCollection($id: ID!) {
-    collection_products: collection(id: $id) {
-        id
-        products(first: 20) {
-            nodes {
-                id
-                handle
-                title
-                description
-                onlineStoreUrl
-                featuredImage {
-                    id
-                    url
-                }
-                custom_title:  metafield(namespace: "homepage_product_banner", key: "product_custom_title") {
-                    id
-                    value
-                }
-                custom_description:  metafield(namespace: "homepage_product_banner", key: "product_custom_desc") {
-                    id
-                    value
-                }
-                
-            }		
+        featured_collection: field(key: "collection") {
+            value 
+            reference {
+                ...FeaturedCollectionDetails
+            }
         }
     }
 }
+${FEATURED_COLLECTION_FRAGMENT}
 `;

@@ -1,6 +1,6 @@
 import { defer } from '@shopify/remix-oxygen';
 import { useLoaderData } from '@remix-run/react';
-import { HOMEPAGE_HERO_QUERY, HOMEPAGE_PRODUCT_BANNER_QUERY, FEATURED_COLLECTION } from '../data/queries';
+import { HOMEPAGE_HERO_QUERY, HOMEPAGE_PRODUCT_BANNER_QUERY } from '../data/queries';
 
 import  HomepageHero  from '../components/sections/HomepageHero';
 import  HomepageProductBanner  from '../components/sections/HomepageProductBanner';
@@ -18,17 +18,13 @@ export async function loader({params, context}) {
                 cache: context.storefront.CacheLong()
             }
         )
+
     ]);
+
 
     return defer({
         homepage_hero: homepage_hero,
-        homepage_product_banner: {
-            heading: homepage_product_banner.heading.value,
-            featured_collection_products: await context.storefront.query(FEATURED_COLLECTION, {
-                variables: { id: homepage_product_banner.featured_collection.value },
-                cache: context.storefront.CacheLong()
-            }) 
-        }
+        homepage_product_banner: homepage_product_banner
     });
 
 }
@@ -44,11 +40,13 @@ export default function Homepage() {
         homepage_product_banner
     } = useLoaderData();
 
+    //console.log(homepage_product_banner)
+
 
     return (
         <>
-            <HomepageHero settings={ homepage_hero }/>
-            <HomepageProductBanner settings={ homepage_product_banner }/>
+            <HomepageHero settings={ homepage_hero } />
+            <HomepageProductBanner settings={ homepage_product_banner } />
 
         </>
 
