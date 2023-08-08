@@ -8,7 +8,6 @@ import enquire from 'enquire-js';
 
 import viewport from '../snippets/MediaQueries';
 
-
 register();
 
 export default function HomepageProductBanner({settings}) {
@@ -16,91 +15,82 @@ export default function HomepageProductBanner({settings}) {
     const { heading,  featured_collection, image_sizes } = settings;
     const { products } = featured_collection.reference;
 
-    const swiperElRef = useRef(null);
+    const [ slider, setSlider ] = useState(false)
+    const swiperContainerRef = useRef(null);
 
     const swiperParams = {
-        slidesPerView: 'auto',
-        spaceBetween: 15,
+        // slidesPerView: 'auto',
+        // spaceBetween: 15,
         loop: false,
         autoplay: false,
         autoHeight: true,
         breakpointsInverse: true,
         breakpoints: {
-            576: {
+            375: {
+                slidesPerView: 'auto',
+                spaceBetween: 15
+            },
+           576: {
+              slidesPerView: 'auto',
+              spaceBetween: 30
+           },
+           768: {
                 slidesPerView: 'auto',
                 spaceBetween: 30
-            },
-            992: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-                allowTouchMove: true
-            }
+           },
+           992:{
+              slidesPerView: 4,
+              spaceBetween: 30,
+              allowTouchMove: true
+           }
         }
-
-    }
-
-    const swiperParams2 = {
-        slidesPerView: 'auto',
-        spaceBetween: 15,
-        loop: false,
-        autoplay: false,
-        autoHeight: true,
-        breakpointsInverse: true,
-        breakpoints: {
-            576: {
-                slidesPerView: 'auto',
-                spaceBetween: 30
-            },
-            992: {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                allowTouchMove: false
-            }
-        }
-
-    }
-
+     }
 
     useEffect(() => {
 
-        const swiperEl = swiperElRef.current;
-        
-        Object.assign(swiperEl, swiperParams);
+        if( swiperContainerRef.current != null ) {
+            Object.assign(swiperContainerRef.current.swiper.params, swiperParams)
+            swiperContainerRef.current.swiper.update();
 
-        swiperEl.initialize();
+            // swiperContainerRef.current.addEventListener('resize', () => {
 
+            //     setTimeout( function() {
+            //         swiperContainerRef.current.swiper.update();
+            //     },50)
+                
 
-        const matchMobile = {
+            //     console.log('resize')
+
+            // })
+
+        }
+
+        console.log(swiperContainerRef)
+
+        const mobile = {
             match: () => {
-                Object.assign(swiperEl, swiperParams);
-
-                swiperEl.initialize();
-
-                console.log('matched')
+                setSlider(true);
             }
 
         }
 
-        const destroySlide = {
+        const desktop = {
             match: () => {
-                swiperEl.swiper.disable();
-                console.log('destroyed')
-
+                setSlider(false);
             }
 
         }
 
-        enquire.register( viewport( '$viewport5', 'max' ), matchMobile)
-        .register( viewport( '$viewport5', 'min' ), destroySlide);
+        enquire.register( viewport( '$viewport5', 'max' ), mobile)
+        .register( viewport( '$viewport5', 'min' ), desktop);
 
+        return() => {
+            enquire.unregister( viewport( '$viewport5', 'max' ), mobile)
+            .unregister( viewport( '$viewport5', 'min' ), desktop);
 
-        return () => {
-            enquire.unregister('$viewport5', 'max', matchMobile);
-            enquire.unregister('$viewport5', 'min', destroySlide);
-        };
+        }
 
-    }, []);
-
+    }, [slider]);
 
 
     return (
@@ -109,14 +99,24 @@ export default function HomepageProductBanner({settings}) {
                 <h2 className="homepage_product_banners__title"> { heading.value } </h2>
 
                 <div className="homepage_product_banners__slider homepage_product_banners__slider_mobile">
-                    <swiper-container 
-                    class="homepage_product_banners__slider_wrapper"
-                    init="false"
-                    ref={ swiperElRef }>
-                        <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) }/> 
 
+                    { slider ? (
+                         <swiper-container 
+                         class="homepage_product_banners__slider_wrapper"
+                         ref={ swiperContainerRef }
+                         slidesPerView = 'auto'
+                         spaceBetween = '15'
+                         loop = 'false'
+                         >
+                             <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) } slider={slider}/> 
+     
+                         </swiper-container> 
+                    ) : (
+                        <div className="homepage_product_banners__slider_wrapper">
+                            <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) } slider={slider} /> 
 
-                    </swiper-container>
+                        </div>
+                    )}
 
                 </div>
 
@@ -129,18 +129,23 @@ export default function HomepageProductBanner({settings}) {
 }
 
 
-function ProductCards( { products, image_sizes } ) {
+
+
+function ProductCards( { products, image_sizes, slider } ) {
     const productCards = Object.keys(products).map( (product) => {
 
         return (
-            <ProductCard key= { products[product].id } product={ products[product] } image_sizes= { image_sizes } /> 
+            <ProductCard key= { products[product].id } product={ products[product] } image_sizes= { image_sizes } slider={slider}/> 
         )
     });
 
     return productCards;
 }
 
-function ProductCard( { product , image_sizes } ) {
+
+
+
+function ProductCard( { product , image_sizes, slider } ) {
 
     const { handle, custom_title, custom_description, custom_image } = product;
     const productLink = `/products/${handle}`;
@@ -151,33 +156,66 @@ function ProductCard( { product , image_sizes } ) {
     }
 
     return (
-        <swiper-slide 
-        class="homepage_product_banners__slide"
-        >
-            <Link className="homepage_product_banners__slide_link"
-            to={ productLink }
-            alt={ custom_description.value }>
-
-                <RenderImage img_url={ img_url } 
-                image_sizes={ image_sizes }
-                width="121" 
-                height="78" 
-                img_class="homepage_product_banners__slide_image" />
-
-                <div className="homepage_product_banners__slide_text">
-                    <h5 className="homepage_product_banners__slide_title">
-                        { custom_title.value }
-                    </h5>
-
-                    <p className="homepage_product_banners__slide_description">
-                        { custom_description.value }
-                    </p>
-
+        <>
+            { slider ? (
+                <swiper-slide 
+                class="homepage_product_banners__slide"
+                >
+                    <Link className="homepage_product_banners__slide_link"
+                    to={ productLink }
+                    alt={ custom_description.value }>
+        
+                        <RenderImage img_url={ img_url } 
+                        image_sizes={ image_sizes }
+                        width="121" 
+                        height="78" 
+                        img_class="homepage_product_banners__slide_image" />
+        
+                        <div className="homepage_product_banners__slide_text">
+                            <h5 className="homepage_product_banners__slide_title">
+                                { custom_title.value }
+                            </h5>
+        
+                            <p className="homepage_product_banners__slide_description">
+                                { custom_description.value }
+                            </p>
+        
+                        </div>
+                    
+        
+                    </Link>
+        
+                </swiper-slide>
+            ) : (
+                <div 
+                className="homepage_product_banners__slide"
+                >
+                    <Link className="homepage_product_banners__slide_link"
+                    to={ productLink }
+                    alt={ custom_description.value }>
+        
+                        <RenderImage img_url={ img_url } 
+                        image_sizes={ image_sizes }
+                        width="121" 
+                        height="78" 
+                        img_class="homepage_product_banners__slide_image" />
+        
+                        <div className="homepage_product_banners__slide_text">
+                            <h5 className="homepage_product_banners__slide_title">
+                                { custom_title.value }
+                            </h5>
+        
+                            <p className="homepage_product_banners__slide_description">
+                                { custom_description.value }
+                            </p>
+        
+                        </div>
+                    
+        
+                    </Link>
+        
                 </div>
-               
-
-            </Link>
-
-        </swiper-slide>
+            )}
+        </>
     )
 }
