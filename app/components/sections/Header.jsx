@@ -1,11 +1,11 @@
-import {useState} from "react";
+import { useState } from "react";
 
 import { Link, NavLink } from 'react-router-dom';
 import { Icons } from '../snippets/Icons';
 import { Button } from '../snippets/Button';
 
 
-export default function Header({layout}) {
+export default function Header({ layout }) {
 
     const { url } = layout.shop.primaryDomain;
     const {menu} = layout;
@@ -27,6 +27,7 @@ export default function Header({layout}) {
 
     };
 
+
     return (
         <header>
             <Topbar />
@@ -38,12 +39,23 @@ export default function Header({layout}) {
                     <div className="container common_header__container">
                         <div className="row common_header__row">
                             <div className="common_header__left">
-                                <MenuIcon toggleDrawer={toggleDrawer} />
+
+                                <Link className="common_header__link common_header__link_menu"
+                                onClick={(e) => toggleDrawer(e,'menu')}
+                                to="/">
+                                    <Icons attr={{ icon_type: 'menu', icon_class: 'common_header__link_icon', width: '18', height: '18' }} />
+                                    
+                                </Link>
 
                             </div>
 
                             <div className="common_header__center">
-                                <Logo url={url} />
+                                <Link className="dl__logo_main common_header__logo"
+                                to={ url }
+                                alt="">
+                                    <Icons attr={{ icon_type: 'logo', icon_class: 'dl__logo_main_img', width: '140', height: '50' }} />
+
+                                </Link>
 
                             </div>
 
@@ -52,7 +64,12 @@ export default function Header({layout}) {
 
                                 <Account />
 
-                                <CartIcon toggleDrawer={toggleDrawer} />
+                                <Link className="common_header__link common_header__link_cart" 
+                                    onClick={(e) => toggleDrawer(e,'cart')}
+                                    to="#">
+                                        <Icons attr={{ icon_type: 'cart', icon_class: 'common_header__link_icon', width: '18', height: '18' }} />
+
+                                </Link>
 
                             </div>
 
@@ -64,7 +81,7 @@ export default function Header({layout}) {
 
                 <Navbar menu={ menu } />
 
-                <MenuDrawer isMenuDrawerOpen={isMenuDrawerOpen} toggleDrawer={toggleDrawer} menu={ menu } />
+                <MenuDrawer isMenuDrawerOpen={isMenuDrawerOpen} toggleDrawer={toggleDrawer} menu={ menu }/>
 
                 <CartDrawer isCartDrawerOpen={isCartDrawerOpen} toggleDrawer={toggleDrawer} /> 
 
@@ -77,7 +94,7 @@ export default function Header({layout}) {
 }
 
 
-function Navbar({menu}) {
+function Navbar({ menu }) {
 
     const { headerMenu } = menu;
 
@@ -107,23 +124,9 @@ function Navbar({menu}) {
 
 }
 
-function MenuDrawer({isMenuDrawerOpen, toggleDrawer, menu}) {
+function MenuDrawer({ isMenuDrawerOpen, toggleDrawer, menu }) {
 
     const { headerMenu, secondaryMenu } = menu;
-
-    const closeIconAttr = {
-        icon_type: 'close',
-        icon_class: 'menu_drawer__close_icon',
-        width: '18',
-        height: '18'
-    };
-
-    const accountIconAttr = {
-        icon_type: 'account',
-        icon_class: 'menu_drawer__account_icon',
-        width: '18',
-        height: '18'
-    };
 
     return(
         <>
@@ -137,7 +140,7 @@ function MenuDrawer({isMenuDrawerOpen, toggleDrawer, menu}) {
                     <Link className="dl__btn_icon menu_drawer__close"
                     onClick={(e) => toggleDrawer(e,'menu')}
                     to='#'>
-                        <Icons attr={closeIconAttr} />
+                        <Icons attr={{ icon_type: 'close', icon_class: 'menu_drawer__close_icon', width: '18', height: '18' }} />
 
                     </Link>
 
@@ -185,7 +188,7 @@ function MenuDrawer({isMenuDrawerOpen, toggleDrawer, menu}) {
                     to="https://wuffes.com/tools/recurring/login?redirect=customer_portal%2Fsubscriptions"
                     alt="My Account">
 
-                        <Icons attr={accountIconAttr} />
+                        <Icons attr={{ icon_type: 'account', icon_class: 'menu_drawer__account_icon', width: '18', height: '18' }} />
 
                         My Account
 
@@ -200,36 +203,7 @@ function MenuDrawer({isMenuDrawerOpen, toggleDrawer, menu}) {
 }
 
 
-function CartDrawer({isCartDrawerOpen, toggleDrawer}) {
-
-    const closeIconAttr = {
-        icon_type: 'close',
-        icon_class: 'cart_drawer__close_icon',
-        width: '18',
-        height: '18'
-    },
-    emptyCartIconAttr = {
-        icon_type: 'empty_cart',
-        icon_class: 'cart_drawer__empty_icon',
-        width: '50',
-        height: '50'
-    },
-    totalCartIconAttr = {
-        icon_type: 'total_cart',
-        icon_class: 'cart_drawer__footer_total__icon',
-        width: '10',
-        height: '10'
-    },
-    bottomCartIconAttr = {
-        icon_type: 'bottom_cart',
-        icon_class: 'cart_drawer__footer_note__icon',
-        width: '20',
-        height: '20'
-    };
-
-    const buttonAttr = {
-        text: 'Checkout Securely'
-    };
+function CartDrawer({ isCartDrawerOpen, toggleDrawer }) {
 
     return(
         <div className={`dl__drawer dl__drawer_right cart_drawer ${isCartDrawerOpen ? "active" : ""}`}>
@@ -241,7 +215,7 @@ function CartDrawer({isCartDrawerOpen, toggleDrawer}) {
                     className="dl__btn_icon cart_drawer__close"
                     onClick={(e) => toggleDrawer(e,'cart')}
                     to="#">
-                        <Icons attr={closeIconAttr} />
+                        <Icons attr={{ icon_type: 'close', icon_class: 'cart_drawer__close_icon', width: '18', height: '18' }} />
                     
                     </Link>
                     
@@ -251,7 +225,7 @@ function CartDrawer({isCartDrawerOpen, toggleDrawer}) {
                     <div className="cart_drawer__items">
                         <div className="cart_drawer__empty">
                             <div className="cart_drawer__empty_img">
-                                <Icons attr={emptyCartIconAttr} />
+                                <Icons attr={{ icon_type: 'empty_cart', icon_class: 'cart_drawer__empty_icon', width: '50', height: '50' }} />
 
                             </div>
 
@@ -268,7 +242,7 @@ function CartDrawer({isCartDrawerOpen, toggleDrawer}) {
                         <span>
                             Subtotal
 
-                            <Icons attr={totalCartIconAttr} />
+                            <Icons attr={{ icon_type: 'total_cart', icon_class: 'cart_drawer__footer_total__icon', width: '10', height: '10' }} />
 
                         </span>
 
@@ -276,10 +250,10 @@ function CartDrawer({isCartDrawerOpen, toggleDrawer}) {
 
                     </h4>
 
-                    <Button attr={buttonAttr} />
+                    <Button attr={{ text: 'Checkout Securely' }} />
 
                     <p className="cart_drawer__footer_note">
-                        <Icons attr={bottomCartIconAttr} />
+                        <Icons attr={{ icon_type: 'bottom_cart', icon_class: 'cart_drawer__footer_note__icon', width: '20', height: '20' }} />
 
                         Buy more items — get bigger discounts and pay less!
 
@@ -292,28 +266,6 @@ function CartDrawer({isCartDrawerOpen, toggleDrawer}) {
         </div>
     );
 }
-
-
-function Logo({url}) {
-
-    const logoIconAttr = {
-        icon_type: 'logo',
-        icon_class: 'dl__logo_main_img',
-        width: '140',
-        height: '50'
-    };
-
-    return(
-        <Link className="dl__logo_main common_header__logo"
-        to={ url }
-        alt="">
-            <Icons attr={ logoIconAttr }/>
-
-        </Link>
-    );
-
-}
-
 
 
 function Topbar() {
@@ -331,58 +283,13 @@ function Topbar() {
     );
 }
 
-function MenuIcon({toggleDrawer}) {
-
-    const menuIconAttr = {
-        icon_type: 'menu',
-        icon_class: 'common_header__link_icon',
-        width: '18',
-        height: '18'
-    };
-
-    return(
-        <Link className="common_header__link common_header__link_menu"
-        onClick={(e) => toggleDrawer(e,'menu')}
-        to="/">
-            <Icons attr={ menuIconAttr } />
-            
-        </Link>
-    );
-}
-
-function CartIcon({toggleDrawer}) {
-
-    const cartIconAttr = {
-        icon_type: 'cart',
-        icon_class: 'common_header__link_icon',
-        width: '18',
-        height: '18'
-    };
-
-    return(
-        <Link className="common_header__link common_header__link_cart" 
-        onClick={(e) => toggleDrawer(e,'cart')}
-        to="#">
-            <Icons attr={ cartIconAttr } />
-
-        </Link>
-
-    );
-}
 
 function Account() {
-
-    const accountIconAttr = {
-        icon_type: 'account',
-        icon_class: 'common_header__link_icon',
-        width: '19',
-        height: '19'
-    };
 
     return(
         <Link className="js__recharge_login_link common_header__link common_header__link_account" 
         to="/">
-            <Icons attr={ accountIconAttr }/>
+            <Icons attr={{ icon_type: 'account', icon_class: 'common_header__link_icon', width: '19', height: '19' }}/>
 
         </Link>
     );
