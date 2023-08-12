@@ -74,16 +74,37 @@ export const PRODUCT_CARD_FRAGMENT = `#graphql
   }
 `;
 
-export const FEATURED_COLLECTION_FRAGMENT = `#graphql
+export const FEATURED_COLLECTION_FRAGMENT = `
   fragment FeaturedCollectionDetails on Collection {
     id
-    title
-    handle
-    image {
-      altText
-      width
-      height
-      url
+    products(first: 20) {
+        nodes {
+            id
+            handle
+            title
+            description
+            onlineStoreUrl
+            featuredImage {
+                id
+                url
+            }
+            custom_title:  metafield(namespace: "homepage_product_banner", key: "product_custom_title") {
+                id
+                value
+            }
+            custom_description:  metafield(namespace: "homepage_product_banner", key: "product_custom_desc") {
+                id
+                value
+            }
+            custom_image: metafield(namespace: "homepage_product_banner", key: "image") {
+                id
+                value
+                reference {
+                    ...Media
+                }
+            }
+        }		
     }
-  }
+}
+${MEDIA_FRAGMENT}
 `;

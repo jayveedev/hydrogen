@@ -1,0 +1,285 @@
+.homepage_product_banners {
+	overflow-x: hidden;
+}
+
+.homepage_product_banners__container {
+	margin: 0 -15px 0 0;
+	padding-left: 0;
+	padding-right: 0;
+
+	position: relative;
+}
+
+.homepage_product_banners__title {
+	padding: $dl_indent_new_4 0 0 0;
+
+	text-align: center;
+}
+
+.homepage_product_banners__slider {
+	overflow: visible;
+
+	margin: 0;
+	padding: $dl_mobile_indent_3 15px 0 15px;
+}
+
+.homepage_product_banners__slider_wrapper {
+
+}
+
+.homepage_product_banners__slide {
+	width: 35%;
+}
+
+.homepage_product_banners__slide_link {
+	display: block;
+
+	text-decoration: none;
+}
+
+.homepage_product_banners__slide_image {
+	width: auto;
+	height: auto;
+
+	display: block;
+
+	//margin-top: -6.666666%;
+    margin-top: 0;
+	margin-bottom: -5.555555%;
+
+	position: relative;
+	z-index: 10;
+}
+
+.homepage_product_banners__slide_text {
+	@extend %dl__gradient_grey;
+
+	margin: 0;
+	padding: 0 $dl_indent_new_1;
+}
+
+.homepage_product_banners__slide_title {
+	overflow: hidden;
+
+	margin: 0;
+	padding: $dl_indent_new_1 0;
+
+	color: rgb($dl_color_text_title);
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	position: relative;
+	z-index: 1;
+
+	@include transition( .2s, color );
+
+	.homepage_product_banners__slide_link:hover & {
+		color: rgb($dl_color_red);
+	}
+}
+
+.homepage_product_banners__slide_description {
+	display: none;
+
+	padding: 0 0 $dl_indent_new_1 0;
+
+	font-size: 11px;
+	text-align: center;
+}
+
+.homepage_product_banners__navigation {
+	display: none;
+
+	background: rgb($dl_color_white);
+
+	position: absolute;
+	left: 0;
+	bottom: 39px;
+	z-index: 10;
+
+	&.swiper-button-disabled {
+		cursor: default;
+	}
+
+}
+
+.homepage_product_banners__navigation_prev {
+
+}
+
+.homepage_product_banners__navigation_next {
+	left: auto;
+	right: 0;
+}
+
+.homepage_product_banners__navigation_icon {
+
+	.swiper-button-disabled &,
+	.swiper-button-disabled:hover & {
+		fill: rgb($dl_color_text_grey);
+	}
+
+}
+
+
+
+
+
+
+
+// RESPONSIVE STYLES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@include responsive( $min, $viewport_1 ) {
+
+}
+
+
+
+
+@include responsive( $min, $viewport_2 ) {
+
+	.homepage_product_banners__container {
+		max-width: 540px;
+
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.homepage_product_banners__slider {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_3 ) {
+
+	.homepage_product_banners__container {
+		max-width: 720px;
+	}
+
+	.homepage_product_banners__title {
+		padding: $dl_indent_new_6 0 0 0;
+	}
+
+	.homepage_product_banners__slider {
+		padding-top: $dl_mobile_indent_2_grid;
+	}
+
+	.homepage_product_banners__slide_text {
+		min-height: 106px;
+	}
+
+	.homepage_product_banners__slide_description {
+		display: block;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_4 ) {
+
+	.homepage_product_banners__container {
+		max-width: 960px;
+	}
+
+	.homepage_product_banners__slide {
+		width: 27%;
+	}
+
+	.homepage_product_banners__slide_text {
+		min-height: 142px;
+	}
+
+	.homepage_product_banners__slide_description {
+		font-size: 12px;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_5 ) {
+
+	.homepage_product_banners__container {
+		max-width: 1200px;
+	}
+
+	.homepage_product_banners__slider {
+		overflow: hidden;
+	}
+
+	.homepage_product_banners__slider_desktop {
+
+		.homepage_product_banners__slide {
+			width: 25%;
+		}
+
+		.homepage_product_banners__navigation {
+			display: block;
+		}
+
+	}
+
+	.homepage_product_banners__slider_mobile {
+		margin-right: -15px;
+		margin-left: -15px;
+
+		.homepage_product_banners__slider_wrapper {
+			display: -ms-flexbox;
+			display: flex;
+
+			-ms-flex-wrap: wrap;
+				flex-wrap: wrap;
+		}
+
+		.homepage_product_banners__slide {
+			max-width: 25%;
+
+			-ms-flex: 0 0 25%;
+				flex: 0 0 25%;
+
+			padding: 0 15px;
+		}
+
+	}
+
+	.homepage_product_banners__slide_title {
+		padding: $dl_indent_new_2 0;
+	}
+
+	.homepage_product_banners__slide_description {
+		padding: 0 0 $dl_indent_new_3 0;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_6 ) {
+
+	.homepage_product_banners__navigation {
+		bottom: 53px;
+	}
+
+	.homepage_product_banners__slide_description {
+		font-size: 13px;
+	}
+
+}
+
+
+
+
+@include responsive( $min, $viewport_7 ) {
+
+}
