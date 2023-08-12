@@ -8,7 +8,6 @@ import enquire from 'enquire-js';
 
 import viewport from '../snippets/MediaQueries';
 
-register();
 
 export default function HomepageProductBanner({settings}) {
 
@@ -18,54 +17,55 @@ export default function HomepageProductBanner({settings}) {
     const [ slider, setSlider ] = useState(false)
     const swiperContainerRef = useRef(null);
 
-    const swiperParams = {
-        // slidesPerView: 'auto',
-        // spaceBetween: 15,
-        loop: false,
-        autoplay: false,
-        autoHeight: true,
-        breakpointsInverse: true,
-        breakpoints: {
-            375: {
-                slidesPerView: 'auto',
-                spaceBetween: 15
-            },
-           576: {
-              slidesPerView: 'auto',
-              spaceBetween: 30
-           },
-           768: {
-                slidesPerView: 'auto',
-                spaceBetween: 30
-           },
-           992:{
-              slidesPerView: 4,
-              spaceBetween: 30,
-              allowTouchMove: true
-           }
-        }
-     }
+
+    if( slider ) {
+
+        register();
+
+        const swiperParams = {
+            // slidesPerView: 'auto',
+            // spaceBetween: 15,
+            loop: false,
+            autoplay: false,
+            autoHeight: true,
+            breakpointsInverse: true,
+            breakpoints: {
+                375: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 15
+                },
+               576: {
+                  slidesPerView: 'auto',
+                  spaceBetween: 30
+               },
+               768: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 30
+               },
+               992:{
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                  allowTouchMove: true
+               }
+            }
+         }
+    
+        //  if( swiperContainerRef.current != null ) {
+        //     Object.assign(swiperContainerRef.current.swiper.params, swiperParams)
+    
+        //     swiperContainerRef.current.addEventListener('resize', () => {
+        //         setTimeout( function() {
+        //             swiperContainerRef.current.swiper.update();
+        //         },50)
+            
+    
+        //     })
+    
+        // }
+
+    }
 
     useEffect(() => {
-
-        if( swiperContainerRef.current != null ) {
-            Object.assign(swiperContainerRef.current.swiper.params, swiperParams)
-            swiperContainerRef.current.swiper.update();
-
-            // swiperContainerRef.current.addEventListener('resize', () => {
-
-            //     setTimeout( function() {
-            //         swiperContainerRef.current.swiper.update();
-            //     },50)
-                
-
-            //     console.log('resize')
-
-            // })
-
-        }
-
-        console.log(swiperContainerRef)
 
         const mobile = {
             match: () => {
@@ -84,6 +84,8 @@ export default function HomepageProductBanner({settings}) {
         enquire.register( viewport( '$viewport5', 'max' ), mobile)
         .register( viewport( '$viewport5', 'min' ), desktop);
 
+
+
         return() => {
             enquire.unregister( viewport( '$viewport5', 'max' ), mobile)
             .unregister( viewport( '$viewport5', 'min' ), desktop);
@@ -101,15 +103,14 @@ export default function HomepageProductBanner({settings}) {
                 <div className="homepage_product_banners__slider homepage_product_banners__slider_mobile">
 
                     { slider ? (
-                         <swiper-container 
-                         class="homepage_product_banners__slider_wrapper"
+                         <swiper-container class="homepage_product_banners__slider_wrapper" 
                          ref={ swiperContainerRef }
                          slidesPerView = 'auto'
-                         spaceBetween = '15'
-                         loop = 'false'
+                         spaceBetween = {15}
+                         loop = {false}
                          >
-                             <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) } slider={slider}/> 
-     
+                            <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) } slider={slider}/>
+                              
                          </swiper-container> 
                     ) : (
                         <div className="homepage_product_banners__slider_wrapper">
@@ -117,7 +118,7 @@ export default function HomepageProductBanner({settings}) {
 
                         </div>
                     )}
-
+                
                 </div>
 
             </div>
@@ -158,8 +159,7 @@ function ProductCard( { product , image_sizes, slider } ) {
     return (
         <>
             { slider ? (
-                <swiper-slide 
-                class="homepage_product_banners__slide"
+                <swiper-slide class="homepage_product_banners__slide" 
                 >
                     <Link className="homepage_product_banners__slide_link"
                     to={ productLink }
