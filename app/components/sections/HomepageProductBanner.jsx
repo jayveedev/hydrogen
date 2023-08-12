@@ -50,18 +50,18 @@ export default function HomepageProductBanner({settings}) {
             }
          }
     
-        //  if( swiperContainerRef.current != null ) {
-        //     Object.assign(swiperContainerRef.current.swiper.params, swiperParams)
+         if( swiperContainerRef.current != null ) {
+            Object.assign(swiperContainerRef.current.swiper.params, swiperParams)
     
-        //     swiperContainerRef.current.addEventListener('resize', () => {
-        //         setTimeout( function() {
-        //             swiperContainerRef.current.swiper.update();
-        //         },50)
+            swiperContainerRef.current.addEventListener('resize', () => {
+                setTimeout( function() {
+                    swiperContainerRef.current.swiper.update();
+                },50)
             
     
-        //     })
+            })
     
-        // }
+        }
 
     }
 
