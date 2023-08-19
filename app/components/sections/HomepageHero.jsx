@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import RenderImage from '../snippets/RenderImage';
+import { RenderImage } from '~/components';
 
-export default function HomepageHero({settings}) {
+export function HomepageHero({settings}) {
 
     const { heading, button_text, button_url, image_desktop_left, image_desktop_right, image_mobile_left, image_mobile_right, image_sizes } = settings;
 

@@ -1,6 +1,6 @@
-import Header from '../sections/Header';
+import { Header } from '~/components';
 
-export default function Layout({layout}) {
+export function Layout({layout}) {
 
     return (
         <>

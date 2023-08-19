@@ -2,8 +2,7 @@ import { defer } from '@shopify/remix-oxygen';
 import { useLoaderData } from '@remix-run/react';
 import { HOMEPAGE_HERO_QUERY, HOMEPAGE_PRODUCT_BANNER_QUERY } from '../data/queries';
 
-import  HomepageHero  from '../components/sections/HomepageHero';
-import  HomepageProductBanner  from '../components/sections/HomepageProductBanner';
+import { HomepageHero, HomepageProductBanner }  from '../components';
 
 export async function loader({params, context}) {
 
@@ -39,8 +38,6 @@ export default function Homepage() {
         homepage_hero,
         homepage_product_banner
     } = useLoaderData();
-
-    //console.log(homepage_product_banner)
 
 
     return (

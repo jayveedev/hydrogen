@@ -10,7 +10,7 @@ import {
 import styles from './styles/app.css';
 import favicon from '../public/favicon.svg';
 
-import Layout from './components/layout/Layout';
+import { Layout } from './components';
 
 import {parseMenu} from './lib/utils';
 

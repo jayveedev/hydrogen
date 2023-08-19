@@ -49,7 +49,7 @@ const getGeneratedImgUrls = (img_url, image_sizes) => {
 
 
 
-export default function RenderImage( { img_url, image_sizes, width, height, img_class } ) {
+export function RenderImage( { img_url, image_sizes, width, height, img_class } ) {
 
     const generatedImgUrls = getGeneratedImgUrls(img_url, image_sizes);
 

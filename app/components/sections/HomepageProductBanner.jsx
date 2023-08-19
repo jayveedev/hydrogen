@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom';
-import RenderImage from '../snippets/RenderImage';
+import { RenderImage } from '~/components';
 
 import { useState, useEffect, useRef } from "react";
 import { register } from 'swiper/element/bundle';
 
 import enquire from 'enquire-js';
 
-import viewport from '../snippets/MediaQueries';
+import viewport from '../../helpers/MediaQueries';
 
 
-export default function HomepageProductBanner({settings}) {
+export function HomepageProductBanner({settings}) {
 
-    const { heading,  featured_collection, image_sizes } = settings;
-    const { products } = featured_collection.reference;
+const { heading,  featured_collection, image_sizes } = settings;
+const { products } = featured_collection.reference;
 
-    const [ slider, setSlider ] = useState(false)
-    const swiperContainerRef = useRef(null);
+const [ slider, setSlider ] = useState(false)
+const swiperContainerRef = useRef(null);
 
 
     if( slider ) {
@@ -34,33 +34,33 @@ export default function HomepageProductBanner({settings}) {
                     slidesPerView: 'auto',
                     spaceBetween: 15
                 },
-               576: {
-                  slidesPerView: 'auto',
-                  spaceBetween: 30
-               },
-               768: {
+                576: {
                     slidesPerView: 'auto',
                     spaceBetween: 30
-               },
-               992:{
-                  slidesPerView: 4,
-                  spaceBetween: 30,
-                  allowTouchMove: true
-               }
+                },
+                768: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 30
+                },
+                992:{
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                    allowTouchMove: true
+                }
             }
-         }
-    
-         if( swiperContainerRef.current != null ) {
+        }
+
+        if( swiperContainerRef.current != null ) {
             Object.assign(swiperContainerRef.current.swiper.params, swiperParams)
-    
+
             swiperContainerRef.current.addEventListener('resize', () => {
                 setTimeout( function() {
                     swiperContainerRef.current.swiper.update();
                 },50)
-            
-    
+
+
             })
-    
+
         }
 
     }
@@ -103,15 +103,15 @@ export default function HomepageProductBanner({settings}) {
                 <div className="homepage_product_banners__slider homepage_product_banners__slider_mobile">
 
                     { slider ? (
-                         <swiper-container class="homepage_product_banners__slider_wrapper" 
-                         ref={ swiperContainerRef }
-                         slidesPerView = 'auto'
-                         spaceBetween = {15}
-                         loop = {false}
-                         >
+                        <swiper-container class="homepage_product_banners__slider_wrapper" 
+                        ref={ swiperContainerRef }
+                        slidesPerView = 'auto'
+                        spaceBetween = {15}
+                        loop = {false}
+                        >
                             <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) } slider={slider}/>
-                              
-                         </swiper-container> 
+
+                        </swiper-container> 
                     ) : (
                         <div className="homepage_product_banners__slider_wrapper">
                             <ProductCards products={ products.nodes } image_sizes = { JSON.parse( image_sizes.value ) } slider={slider} /> 

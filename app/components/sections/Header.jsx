@@ -1,11 +1,10 @@
 import { useState } from "react";
 
 import { Link, NavLink } from 'react-router-dom';
-import { Icons } from '../snippets/Icons';
-import { Button } from '../snippets/Button';
+import { Icons, Button } from '~/components';
 
 
-export default function Header({ layout }) {
+export function Header({ layout }) {
 
     const { url } = layout.shop.primaryDomain;
     const {menu} = layout;
