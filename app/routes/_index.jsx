@@ -4,6 +4,8 @@ import { HOMEPAGE_HERO_QUERY, HOMEPAGE_PRODUCT_BANNER_QUERY } from '../data/quer
 
 import { HomepageHero, HomepageProductBanner }  from '../components';
 
+import {seoPayload} from '~/lib/seo.server';
+
 export async function loader({params, context}) {
 
     const [ { homepage_hero }, { homepage_product_banner }  ] = await Promise.all([
@@ -20,10 +22,15 @@ export async function loader({params, context}) {
 
     ]);
 
+    const seo = seoPayload.home();
+
+    console.log(seo)
+
 
     return defer({
         homepage_hero: homepage_hero,
-        homepage_product_banner: homepage_product_banner
+        homepage_product_banner: homepage_product_banner,
+        seo
     });
 
 }
@@ -37,7 +44,7 @@ export default function Homepage() {
     const {
         homepage_hero,
         homepage_product_banner
-    } = useLoaderData();
+    } = useLoaderData();    
 
 
     return (
